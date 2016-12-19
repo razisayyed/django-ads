@@ -88,3 +88,11 @@ load ``ads_tags`` in your template:
 use ``render_zone`` in your template where you want your ads to appear:
 
     {% render_zone 'zone_name' %}
+
+    
+Changelog:
+----------
+
+0.1.1 (2016-12-20):
+- add missing templates directory.
+
