@@ -1,0 +1,8 @@
+{% load thumbnail %}{% spaceless %}{% if ad %}<a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}">
+{% if zone %}
+    {% thumbnail ad.image zone.ad_size crop="smart" upscale as thumb %}
+    <img src="{{ thumb.url }}" class="img-responsive" />
+{% else %}
+    <img src="{{ ad.image.url }}" class="img-responsive" />
+{% endif %}
+</a>{% endif %}{% endspaceless %}{{ ad }}
