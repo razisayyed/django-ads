@@ -23,7 +23,7 @@ Configuration:
 
 make sure ``django.template.context_processors.request`` is included in ``context_processors``
 
-.. code:: python
+.. code-block::
    TEMPLATES = [
        {
            'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -44,7 +44,7 @@ make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included t
 
 prior to Django 1.10
 
-.. code-block:: python
+.. code-block::
     MIDDLEWARE_CLASSES = [
         ...
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,7 +53,7 @@ prior to Django 1.10
 
 Django 1.10 (new style)
 
-.. code-block:: python
+.. code-block::
     MIDDLEWARE = [
         ...
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,7 +62,7 @@ Django 1.10 (new style)
 
 Add the following to your settings file:
 
-.. code-block:: python
+.. code-block::
     ADS_ZONES = {
         'header': {
             'name': _('Header'),
@@ -87,12 +87,12 @@ Add Advertisers, Categories, and Ads using Django admin interface.
 
 load ``ads_tags`` in your template:
 
-.. code-block:: python
+.. code-block::
     {% load ads_tags %}
 
 use ``render_zone`` in your template where you want your ads to appear:
 
-.. code-block:: python
+.. code-block::
     {% render_zone 'zone_name' %}
 
     
