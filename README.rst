@@ -23,60 +23,64 @@ Configuration:
 
 make sure ``django.template.context_processors.request`` is included in ``context_processors``
 
-.. code-block::
-   TEMPLATES = [
-       {
-           'BACKEND': 'django.template.backends.django.DjangoTemplates',
-           'DIRS': [],
-           'APP_DIRS': True,
-           'OPTIONS': {
-               'context_processors': [
-                   ...
-                   'django.template.context_processors.request',
-                   ...
-               ],
-           },
-       },
-   ]
+.. code-block:: python
+   
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [],
+          'APP_DIRS': True,
+          'OPTIONS': {
+              'context_processors': [
+                  ...
+                  'django.template.context_processors.request',
+                  ...
+              ],
+          },
+      },
+  ]
 
 
 make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included to ``MIDDLEWARE_CLASSES/MIDDLEWARE``
 
 prior to Django 1.10
 
-.. code-block::
-    MIDDLEWARE_CLASSES = [
-        ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        ...
-    ]
+.. code-block:: python
+
+  MIDDLEWARE_CLASSES = [
+      ...
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      ...
+  ]
 
 Django 1.10 (new style)
 
-.. code-block::
-    MIDDLEWARE = [
-        ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        ...
-    ]
+.. code-block:: python
+
+  MIDDLEWARE = [
+      ...
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      ...
+  ]
 
 Add the following to your settings file:
 
-.. code-block::
-    ADS_ZONES = {
-        'header': {
-            'name': _('Header'),
-            'ad_size': '800x90'
-        },
-        'content': {
-            'name': _('Content'),
-            'ad_size': '500x90',
-        },
-        'sidebar': {
-            'name': _('Sidebar'),
-            'ad_size': '270x270'
-        },
-    }
+.. code-block:: python
+
+  ADS_ZONES = {
+      'header': {
+          'name': _('Header'),
+          'ad_size': '800x90'
+      },
+      'content': {
+          'name': _('Content'),
+          'ad_size': '500x90',
+      },
+      'sidebar': {
+          'name': _('Sidebar'),
+          'ad_size': '270x270'
+      },
+  }
 
 Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in admin interface when adding ads, and a size to be used to resize images in tempaltes using ``easy-thumbnails``.
 
@@ -87,13 +91,15 @@ Add Advertisers, Categories, and Ads using Django admin interface.
 
 load ``ads_tags`` in your template:
 
-.. code-block::
-    {% load ads_tags %}
+.. code-block:: python
+
+  {% load ads_tags %}
 
 use ``render_zone`` in your template where you want your ads to appear:
 
-.. code-block::
-    {% render_zone 'zone_name' %}
+.. code-block:: python
+
+  {% render_zone 'zone_name' %}
 
     
 Changelog:
