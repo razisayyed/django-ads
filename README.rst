@@ -12,11 +12,15 @@ Installation:
 
 Install the package using pip:
 
-    pip install django-ads
+.. code-block:: python
+
+  pip install django-ads
 
 Run django Migration to add tables to your database:
 
-    python manage.py migrate ads
+.. code-block:: python
+
+  python manage.py migrate ads
 
 Configuration:
 --------------
