@@ -25,7 +25,9 @@ Run django Migration to add tables to your database:
 Configuration:
 --------------
 
-make sure ``django.template.context_processors.request`` is included in ``context_processors``
+Add ``'ads'`` to your ``INSTALLED_APPS``
+
+Make sure ``django.template.context_processors.request`` is included in ``context_processors``
 
 .. code-block:: python
    
@@ -45,9 +47,9 @@ make sure ``django.template.context_processors.request`` is included in ``contex
   ]
 
 
-make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included to ``MIDDLEWARE_CLASSES/MIDDLEWARE``
+Make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included to ``MIDDLEWARE_CLASSES/MIDDLEWARE``
 
-prior to Django 1.10
+Prior to Django 1.10
 
 .. code-block:: python
 
