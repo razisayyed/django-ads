@@ -101,11 +101,11 @@ load ``ads_tags`` in your template:
 
   {% load ads_tags %}
 
-use ``render_zone`` in your template where you want your ads to appear:
+use ``render_ads_zone`` in your template where you want your ads to appear:
 
 .. code-block:: python
 
-  {% render_zone 'zone_name' %}
+  {% render_ads_zone 'zone_name' %}
 
     
 Changelog:
