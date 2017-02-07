@@ -12,67 +12,81 @@ Installation:
 
 Install the package using pip:
 
-    pip install django-ads
+.. code-block:: python
+
+  pip install django-ads
 
 Run django Migration to add tables to your database:
 
-    python manage.py migrate ads
+.. code-block:: python
+
+  python manage.py migrate ads
 
 Configuration:
 --------------
 
-make sure ``django.template.context_processors.request`` is included in ``context_processors``
+Add ``'ads'`` to your ``INSTALLED_APPS``
 
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                'context_processors': [
-                    ...
-                    'django.template.context_processors.request',
-                    ...
-                ],
-            },
-        },
-    ]
+Make sure ``django.template.context_processors.request`` is included in ``context_processors``
+
+.. code-block:: python
+   
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [],
+          'APP_DIRS': True,
+          'OPTIONS': {
+              'context_processors': [
+                  ...
+                  'django.template.context_processors.request',
+                  ...
+              ],
+          },
+      },
+  ]
 
 
-make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included to ``MIDDLEWARE_CLASSES/MIDDLEWARE``
+Make sure ``django.contrib.sessions.middleware.SessionMiddleware`` is included to ``MIDDLEWARE_CLASSES/MIDDLEWARE``
 
-prior to Django 1.10
+Prior to Django 1.10
 
-    MIDDLEWARE_CLASSES = [
-        ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        ...
-    ]
+.. code-block:: python
+
+  MIDDLEWARE_CLASSES = [
+      ...
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      ...
+  ]
 
 Django 1.10 (new style)
 
-    MIDDLEWARE = [
-        ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        ...
-    ]
+.. code-block:: python
+
+  MIDDLEWARE = [
+      ...
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      ...
+  ]
 
 Add the following to your settings file:
 
-    ADS_ZONES = {
-        'header': {
-            'name': _('Header'),
-            'ad_size': '800x90'
-        },
-        'content': {
-            'name': _('Content'),
-            'ad_size': '500x90',
-        },
-        'sidebar': {
-            'name': _('Sidebar'),
-            'ad_size': '270x270'
-        },
-    }
+.. code-block:: python
+
+  ADS_ZONES = {
+      'header': {
+          'name': _('Header'),
+          'ad_size': '800x90'
+      },
+      'content': {
+          'name': _('Content'),
+          'ad_size': '500x90',
+      },
+      'sidebar': {
+          'name': _('Sidebar'),
+          'ad_size': '270x270'
+      },
+  }
 
 Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in admin interface when adding ads, and a size to be used to resize images in tempaltes using ``easy-thumbnails``.
 
@@ -83,11 +97,15 @@ Add Advertisers, Categories, and Ads using Django admin interface.
 
 load ``ads_tags`` in your template:
 
-    {% load ads_tags %}
+.. code-block:: python
 
-use ``render_zone`` in your template where you want your ads to appear:
+  {% load ads_tags %}
 
-    {% render_zone 'zone_name' %}
+use ``render_ads_zone`` in your template where you want your ads to appear:
+
+.. code-block:: python
+
+  {% render_ads_zone 'zone_name' %}
 
     
 Changelog:
