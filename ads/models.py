@@ -64,7 +64,6 @@ class Ad(models.Model):
     display return etc.
     """
     title = models.CharField(verbose_name=_('Title'), max_length=255)
-    image = models.ImageField(verbose_name=_('Image'), max_length=255)
     url = models.URLField(verbose_name=_('Advertised URL'))
 
     publication_date = models.DateTimeField(
@@ -84,8 +83,10 @@ class Ad(models.Model):
         verbose_name=_('Zone'), max_length=100)
     weight = models.IntegerField(
         verbose_name=_('Weight'),
-        help_text=_('Weight of the ad relative to other ads in the same zone.<br />'
-                    'Ad with higher weight will be displayed more frequently.'),
+        help_text=_('Weight of the ad relative to other ads '
+                    'in the same zone.<br />'
+                    'Ad with higher weight will be '
+                    'displayed more frequently.'),
         default=1,
         validators=[MinValueValidator(1)])
 
@@ -109,6 +110,16 @@ class Ad(models.Model):
 
 
 @python_2_unicode_compatible
+class AdImage(models.Model):
+    device = models.CharField(
+        verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
+    image = models.ImageField(verbose_name=_('Image'), max_length=255)
+
+    def __str__(self):
+        return self.get_device_display()
+
+
+@python_2_unicode_compatible
 class Impression(models.Model):
     """
     The AdImpression Model will record every time the ad is loaded on a page
@@ -121,7 +132,8 @@ class Impression(models.Model):
     source_ip = models.GenericIPAddressField(
         verbose_name=_('Source IP Address'), null=True, blank=True)
     session_id = models.CharField(
-        verbose_name=_('Source Session ID'), max_length=40, null=True, blank=True)
+        verbose_name=_('Source Session ID'),
+        max_length=40, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Ad Impression')
@@ -147,7 +159,8 @@ class Click(models.Model):
     source_ip = models.GenericIPAddressField(
         verbose_name=_('Source IP Address'), null=True, blank=True)
     session_id = models.CharField(
-        verbose_name=_('Source Session ID'), max_length=40, null=True, blank=True)
+        verbose_name=_('Source Session ID'),
+        max_length=40, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Ad Click')

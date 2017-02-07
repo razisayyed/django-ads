@@ -22,3 +22,10 @@ class AdsConf(AppConf):
             'ad_size': '270x270',
         }
     }
+
+    DEVICES = {
+        'xs': _('Smartphones'),
+        'sm': _('Tablets'),
+        'md': _('Small Desktops'),
+        'lg': _('Large Desktops')
+    }

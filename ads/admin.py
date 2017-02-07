@@ -33,7 +33,8 @@ class CategoryAdmin(admin.ModelAdmin):
         """
         Provide initial datas when creating a category.
         """
-        get_data = super(CategoryAdmin, self).get_changeform_initial_data(request)
+        get_data = super(CategoryAdmin, self). \
+            get_changeform_initial_data(request)
         return get_data or {
             'created_by': request.user.pk
         }
@@ -47,12 +48,22 @@ class AdAdminForm(forms.ModelForm):
         }
 
 
+class AdImageInline(admin.TabularInline):
+    model = AdImage
+    fields = ('device', 'image', )
+
+
 class AdAdmin(admin.ModelAdmin):
     form = AdAdminForm
-    list_display = ['title', 'url', 'advertiser', 'weight', 'publication_date', 'publication_date_end']
-    list_filter = ['publication_date', 'publication_date_end', 'created_at', 'modified_at']
+    list_display = [
+        'title', 'url', 'advertiser', 'weight',
+        'publication_date', 'publication_date_end']
+    list_filter = [
+        'publication_date', 'publication_date_end',
+        'created_at', 'modified_at']
     search_fields = ['title', 'url']
     raw_id_fields = ['advertiser', 'created_by']
+    inlines = (AdImageInline, )
 
     def get_changeform_initial_data(self, request):
         """
