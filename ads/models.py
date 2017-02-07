@@ -64,6 +64,7 @@ class Ad(models.Model):
     display return etc.
     """
     title = models.CharField(verbose_name=_('Title'), max_length=255)
+    image = models.ImageField(verbose_name=_('Image'), max_length=255)
     url = models.URLField(verbose_name=_('Advertised URL'))
 
     publication_date = models.DateTimeField(
@@ -111,9 +112,18 @@ class Ad(models.Model):
 
 @python_2_unicode_compatible
 class AdImage(models.Model):
+    ad = models.ForeignKey(
+        Ad, verbose_name=_('Ad'), related_name='images')
     device = models.CharField(
         verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
     image = models.ImageField(verbose_name=_('Image'), max_length=255)
+
+    @property
+    def size(self):
+        size = settings.ADS_ZONES.get(self.image.zone, {}). \
+            get('ad_size', {}). \
+            get(self.device, None)
+        return size or settings.ADS_DEFAULT_AD_SIZE
 
     def __str__(self):
         return self.get_device_display()
@@ -125,8 +135,7 @@ class Impression(models.Model):
     The AdImpression Model will record every time the ad is loaded on a page
     """
     ad = models.ForeignKey(
-        Ad,
-        verbose_name=_('Ad'), related_name='impressions')
+        Ad, verbose_name=_('Ad'), related_name='impressions')
     impression_date = models.DateTimeField(
         verbose_name=_('When'), auto_now_add=True)
     source_ip = models.GenericIPAddressField(
@@ -152,8 +161,7 @@ class Click(models.Model):
     The AdClick model will record every click that a add gets
     """
     ad = models.ForeignKey(
-        Ad,
-        verbose_name=_('Ad'), related_name='clicks')
+        Ad, verbose_name=_('Ad'), related_name='clicks')
     click_date = models.DateTimeField(
         verbose_name=_('When'), auto_now_add=True)
     source_ip = models.GenericIPAddressField(
