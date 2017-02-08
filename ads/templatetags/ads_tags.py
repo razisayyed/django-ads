@@ -19,18 +19,19 @@ def render_ads_zone(context, zone):
     {% render_zone 'zone' %}
     """
 
-    # Retrieve current ad for the zone
-    ad = Ad.objects.current_ad(zone)
+    # Retrieve random ad for the zone based on weight
+    ad = Ad.objects.random_ad(zone)
 
-    request = context['request']
-    if request.session.session_key:
-        impression, created = Impression.objects.get_or_create(
-            ad=ad,
-            session_id=request.session.session_key,
-            defaults={
-                'impression_date': timezone.now(),
-                'source_ip': request.META.get('REMOTE_ADDR', ''),
-            })
+    if ad is not None:
+        request = context['request']
+        if request.session.session_key:
+            impression, created = Impression.objects.get_or_create(
+                ad=ad,
+                session_id=request.session.session_key,
+                defaults={
+                    'impression_date': timezone.now(),
+                    'source_ip': request.META.get('REMOTE_ADDR', ''),
+                })
     return {
         'ad': ad,
         'zone': settings.ADS_ZONES.get(zone, None)
