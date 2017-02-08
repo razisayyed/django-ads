@@ -5,7 +5,6 @@ from ads import __version__
 REQUIREMENTS = [
     'Django>=1.8',
     'django-appconf>=1.0.2',
-    'easy-thumbnails>=2.3',
 ]
 
 CLASSIFIERS = [
