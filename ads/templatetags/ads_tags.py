@@ -10,7 +10,7 @@ from ads.models import Ad, Impression
 register = template.Library()
 
 
-@register.inclusion_tag('ads/tags/render_zone.html', takes_context=True)
+@register.inclusion_tag('ads/tags/render_ads_zone.html', takes_context=True)
 def render_ads_zone(context, zone):
     """
     Returns an advertise for a ``zone``.

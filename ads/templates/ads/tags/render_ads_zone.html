@@ -1,0 +1,9 @@
+{% spaceless %}
+{% if ad %}
+<a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}">
+    {% for image in ad.images.all %}
+    <img src="{{ image.image.url }}" class="img-responsive visible-{{ image.device }}" />
+    {% endfor %}
+</a>
+{% endif %}
+{% endspaceless %}
