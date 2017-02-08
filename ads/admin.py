@@ -6,6 +6,7 @@ from django import forms
 from django.contrib import admin
 from django.http import HttpResponse
 
+from ads.forms import AdImageInlineForm
 from ads.models import *
 from ads.utils import get_zones_choices
 
@@ -50,6 +51,7 @@ class AdAdminForm(forms.ModelForm):
 
 class AdImageInline(admin.TabularInline):
     model = AdImage
+    form = AdImageInlineForm
     fields = ('device', 'image', )
 
 
