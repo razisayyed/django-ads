@@ -114,3 +114,10 @@ Changelog:
 0.1.1 (2016-12-20):
 - add missing templates directory.
 
+0.1.2 (2017-02-08):
+- add AdImage model to allow responsive ads.
+
+0.1.3 (2018-02-08):
+- remove dependency on easy-thumbnails.
+- add Image validation to validate image size on upload using Admin interface.
+
