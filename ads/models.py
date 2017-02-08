@@ -64,7 +64,6 @@ class Ad(models.Model):
     display return etc.
     """
     title = models.CharField(verbose_name=_('Title'), max_length=255)
-    image = models.ImageField(verbose_name=_('Image'), max_length=255)
     url = models.URLField(verbose_name=_('Advertised URL'))
 
     publication_date = models.DateTimeField(
@@ -120,7 +119,7 @@ class AdImage(models.Model):
 
     @property
     def size(self):
-        size = settings.ADS_ZONES.get(self.image.zone, {}). \
+        size = settings.ADS_ZONES.get(self.ad.zone, {}). \
             get('ad_size', {}). \
             get(self.device, None)
         return size or settings.ADS_DEFAULT_AD_SIZE
