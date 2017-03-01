@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 
 from ads.models import Ad, Impression
+from ads.utils import get_client_ip
 
 
 register = template.Library()
@@ -30,7 +31,7 @@ def render_ads_zone(context, zone):
                 session_id=request.session.session_key,
                 defaults={
                     'impression_date': timezone.now(),
-                    'source_ip': request.META.get('REMOTE_ADDR', ''),
+                    'source_ip': get_client_ip(request),
                 })
     return {
         'ad': ad,

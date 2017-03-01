@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.views import View
 from django.views.generic.detail import SingleObjectMixin
 
+from ads.utils import get_client_ip
+
 
 class AdClickView(
         SingleObjectMixin, View):
@@ -19,6 +21,6 @@ class AdClickView(
                 session_id=request.session.session_key,
                 defaults={
                     'click_date': timezone.now(),
-                    'source_ip': request.META.get('REMOTE_ADDR', ''),
+                    'source_ip': get_client_ip(request),
                 })
         return HttpResponseRedirect(ad.url)

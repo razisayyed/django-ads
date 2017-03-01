@@ -111,13 +111,16 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
-0.1.1 (2016-12-20):
-- add missing templates directory.
+0.1.4 (2017-03-01):
+- get client ip address from HTTP_X_FORWARDED_FOR if it exists.
+
+0.1.3 (2017-02-08):
+- remove dependency on easy-thumbnails.
+- add Image validation to validate image size on upload using Admin interface.
 
 0.1.2 (2017-02-08):
 - add AdImage model to allow responsive ads.
 
-0.1.3 (2018-02-08):
-- remove dependency on easy-thumbnails.
-- add Image validation to validate image size on upload using Admin interface.
+0.1.1 (2016-12-20):
+- add missing templates directory.
 
