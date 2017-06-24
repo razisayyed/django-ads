@@ -73,18 +73,26 @@ Add the following to your settings file:
 
 .. code-block:: python
 
+  ADS_GOOGLE_ADSENSE_CLIENT = 'ca-pub-xxxxxxxxxxxxxxxx'  # OPTIONAL - DEFAULT TO None
+
   ADS_ZONES = {
       'header': {
           'name': _('Header'),
-          'ad_size': '800x90'
+          'ad_size': '800x90',
+          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
       'content': {
           'name': _('Content'),
           'ad_size': '500x90',
+          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
       'sidebar': {
           'name': _('Sidebar'),
           'ad_size': '270x270'
+          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
   }
 
@@ -111,16 +119,24 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
+0.1.5 (2017-06-24):
+
+- add google adsense fallback
+
 0.1.4 (2017-03-01):
+
 - get client ip address from HTTP_X_FORWARDED_FOR if it exists.
 
 0.1.3 (2017-02-08):
+
 - remove dependency on easy-thumbnails.
 - add Image validation to validate image size on upload using Admin interface.
 
 0.1.2 (2017-02-08):
+
 - add AdImage model to allow responsive ads.
 
 0.1.1 (2016-12-20):
+
 - add missing templates directory.
 

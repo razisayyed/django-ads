@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
 from django import template
-from django.conf import settings
 from django.utils import timezone
 
+from ads.conf import settings
 from ads.models import Ad, Impression
 from ads.utils import get_client_ip
 
@@ -33,7 +33,9 @@ def render_ads_zone(context, zone):
                     'impression_date': timezone.now(),
                     'source_ip': get_client_ip(request),
                 })
-    return {
+    context.update({
         'ad': ad,
+        'google_adsense_client': settings.ADS_GOOGLE_ADSENSE_CLIENT,
         'zone': settings.ADS_ZONES.get(zone, None)
-    }
+    })
+    return context

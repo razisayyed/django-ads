@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
@@ -8,8 +7,8 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _
 
+from ads.conf import settings
 from ads.managers import AdManager
-from ads.settings import AdsConf
 
 
 @python_2_unicode_compatible

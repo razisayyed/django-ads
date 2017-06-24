@@ -5,6 +5,7 @@ from ads import __version__
 REQUIREMENTS = [
     'Django>=1.8',
     'django-appconf>=1.0.2',
+    'django-sekizai>=1.9'
 ]
 
 CLASSIFIERS = [
