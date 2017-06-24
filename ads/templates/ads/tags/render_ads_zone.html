@@ -12,6 +12,6 @@
          data-ad-slot="{{ zone.google_adsense_slot }}"
          data-ad-format="{{ zone.google_adsense_format|default:'auto' }}"></ins>
     {% addtoblock "js" %}<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{% endaddtoblock %}
-    {% addtoblock "js" %}<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>{% endaddtoblock %}
+    {% addtoblock "js" %}<script>[].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){(adsbygoogle = window.adsbygoogle || []).push({});});</script>{% endaddtoblock %}
 {% endif %}
 {% endspaceless %}
