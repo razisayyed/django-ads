@@ -119,6 +119,10 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
+0.1.6 (2017-06-24):
+
+- fix django-sekizai dependency version
+
 0.1.5 (2017-06-24):
 
 - add google adsense fallback
