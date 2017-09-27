@@ -78,25 +78,48 @@ Add the following to your settings file:
   ADS_ZONES = {
       'header': {
           'name': _('Header'),
-          'ad_size': '800x90',
+          'ad_size': {
+              'xs': '720x150',
+              'sm': '800x90',
+              'md': '800x90',
+              'lg': '800x90'
+          },
           'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
           'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
       'content': {
           'name': _('Content'),
-          'ad_size': '500x90',
+          'ad_size': {
+              'xs': '720x150',
+              'sm': '800x90',
+              'md': '800x90',
+              'lg': '800x90'
+          },
           'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
           'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
       'sidebar': {
           'name': _('Sidebar'),
-          'ad_size': '270x270'
+          'ad_size': {
+              'xs': '720x150',
+              'sm': '800x90',
+              'md': '800x90',
+              'lg': '800x90'
+          },
           'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
           'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
       },
   }
 
-Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in admin interface when adding ads, and a size to be used to resize images in tempaltes using ``easy-thumbnails``.
+Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in the admin interface when adding ads, and sizes to be used to display the ad images in templates.
+
+This app has one template: ``ads/tags/render_ads_zone.html``. It makes some assumptions:
+
+#. Your project uses Bootstrap (the ``visible-*`` and ``img-responsive`` CSS classes are used).
+
+#. If you are using Google AdSense‎, it is assumed that you have ``'sekizai'`` in your ``INSTALLED_APPS`` and that your base template contains ``{% render_block "js" %}``.
+
+If either of the above assumptions will cause a problem in your project, feel free to override the template.
 
 Usage:
 ------
