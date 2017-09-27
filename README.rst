@@ -98,6 +98,18 @@ Add the following to your settings file:
 
 Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in admin interface when adding ads, and a size to be used to resize images in tempaltes using ``easy-thumbnails``.
 
+Create a URL pattern in your urls.py:
+
+.. code-block:: python
+
+  from django.conf.urls import include, url
+
+  urlpatterns = [
+      ...
+      url(r'^ads/', include('ads.urls')),
+      ...
+  ]
+
 Usage:
 ------
 
