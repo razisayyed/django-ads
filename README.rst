@@ -121,6 +121,18 @@ This app has one template: ``ads/tags/render_ads_zone.html``. It makes some assu
 
 If either of the above assumptions will cause a problem in your project, feel free to override the template.
 
+Create a URL pattern in your urls.py:
+
+.. code-block:: python
+
+  from django.conf.urls import include, url
+
+  urlpatterns = [
+      ...
+      url(r'^ads/', include('ads.urls')),
+      ...
+  ]
+
 Usage:
 ------
 
