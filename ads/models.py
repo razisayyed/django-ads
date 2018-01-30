@@ -18,7 +18,8 @@ class Advertiser(models.Model):
         verbose_name=_(u'Company Name'), max_length=255)
     website = models.URLField(verbose_name=_(u'Company Site'))
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_('Created By'))
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        verbose_name=_('Created By'))
 
     class Meta:
         verbose_name = _('Advertiser')
@@ -40,7 +41,8 @@ class Category(models.Model):
     description = models.TextField(
         verbose_name=_('Description'), blank=True)
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_('Created By'))
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        verbose_name=_('Created By'))
 
     class Meta:
         verbose_name = _('Category')
@@ -74,9 +76,9 @@ class Ad(models.Model):
 
     # Relations
     advertiser = models.ForeignKey(
-        Advertiser, verbose_name=_("Ad Provider"))
+        Advertiser, on_delete=models.CASCADE, verbose_name=_("Ad Provider"))
     category = models.ForeignKey(
-        Category,
+        Category, on_delete=models.CASCADE,
         verbose_name=_("Category"), blank=True, null=True)
     zone = models.CharField(
         verbose_name=_('Zone'), max_length=100)
@@ -92,7 +94,8 @@ class Ad(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_('Created By'))
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        verbose_name=_('Created By'))
 
     objects = AdManager()
 
@@ -111,7 +114,8 @@ class Ad(models.Model):
 @python_2_unicode_compatible
 class AdImage(models.Model):
     ad = models.ForeignKey(
-        Ad, verbose_name=_('Ad'), related_name='images')
+        Ad, on_delete=models.CASCADE, verbose_name=_('Ad'),
+        related_name='images')
     device = models.CharField(
         verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
     image = models.ImageField(verbose_name=_('Image'), max_length=255)
@@ -133,7 +137,8 @@ class Impression(models.Model):
     The AdImpression Model will record every time the ad is loaded on a page
     """
     ad = models.ForeignKey(
-        Ad, verbose_name=_('Ad'), related_name='impressions')
+        Ad, on_delete=models.CASCADE, verbose_name=_('Ad'),
+        related_name='impressions')
     impression_date = models.DateTimeField(
         verbose_name=_('When'), auto_now_add=True)
     source_ip = models.GenericIPAddressField(
@@ -159,7 +164,8 @@ class Click(models.Model):
     The AdClick model will record every click that a add gets
     """
     ad = models.ForeignKey(
-        Ad, verbose_name=_('Ad'), related_name='clicks')
+        Ad, on_delete=models.CASCADE, verbose_name=_('Ad'),
+        related_name='clicks')
     click_date = models.DateTimeField(
         verbose_name=_('When'), auto_now_add=True)
     source_ip = models.GenericIPAddressField(
