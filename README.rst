@@ -154,6 +154,10 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
+0.2.1 (2018-02-05):
+
+- add long_description to setup.py
+
 0.2.0 (2018-02-05) (Special Thanks to @ataylor32):
 
 - add Django 2.0 support

@@ -1,6 +1,19 @@
 # -*- coding: utf-8 -*-
+# Always prefer setuptools over distutils
 from setuptools import setup, find_packages
+# To use a consistent encoding
+from codecs import open
+from os import path
+
 from ads import __version__
+
+
+here = path.abspath(path.dirname(__file__))
+
+
+with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
+
 
 REQUIREMENTS = [
     'Django>=1.8',
@@ -8,6 +21,7 @@ REQUIREMENTS = [
     'django-sekizai>=0.9.0',
     'Pillow',
 ]
+
 
 CLASSIFIERS = [
     'Development Status :: 2 - Pre-Alpha',
@@ -26,6 +40,7 @@ setup(
     name='django-ads',
     version=__version__,
     description='Ads Management System for Django Framework',
+    long_description=long_description,
     author='Razi Alsayyed',
     author_email='razi.sayed@gmail.com',
     url='https://github.com/razisayyed/django-ads',
