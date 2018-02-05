@@ -154,6 +154,12 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
+0.2.0 (2018-02-05) (Special Thanks to @ataylor32):
+
+- add Django 2.0 support
+- add missing dependency (Pillow)
+- update README
+
 0.1.8 (2017-06-24):
 
 - fix googleads script tags to load multiple ad units in the same page
