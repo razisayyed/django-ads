@@ -25,6 +25,8 @@ def render_ads_zone(context, zone):
 
     if ad is not None:
         request = context['request']
+        if not request.session.session_key:
+            request.session.save()
         if request.session.session_key:
             impression, created = Impression.objects.get_or_create(
                 ad=ad,

@@ -15,6 +15,8 @@ class AdClickView(
 
     def get(self, request, *args, **kwargs):
         ad = self.get_object()
+        if not request.session.session_key:
+            request.session.save()
         if request.session.session_key:
             click, created = Click.objects.get_or_create(
                 ad=ad,
