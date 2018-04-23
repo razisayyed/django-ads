@@ -18,7 +18,7 @@ class AdImageInlineForm(forms.ModelForm):
                 get('ad_size', {}). \
                 get(device, settings.ADS_DEFAULT_AD_SIZE)
             allowed_w, allowed_h = [int(d) for d in allowed_size.split('x')]
-            w, h = get_image_dimensions(image)
+            w, h = get_image_dimensions(image.file)
             if w != allowed_w or h != allowed_h:
                 self.add_error(
                     'image', _('Image size must be %(size)s') % {
