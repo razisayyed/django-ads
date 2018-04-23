@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _
 
+from filer.fields.image import FilerImageField
+
 from ads.conf import settings
 from ads.managers import AdManager
 
@@ -118,7 +120,7 @@ class AdImage(models.Model):
         related_name='images')
     device = models.CharField(
         verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
-    image = models.ImageField(verbose_name=_('Image'), max_length=255)
+    image = FilerImageField(verbose_name=_('Image'), max_length=255, related_name="images")
 
     @property
     def size(self):
