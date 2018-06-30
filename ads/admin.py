@@ -58,7 +58,7 @@ class AdImageInline(admin.TabularInline):
 class AdAdmin(admin.ModelAdmin):
     form = AdAdminForm
     list_display = [
-        'title', 'url', 'advertiser', 'weight',
+        'title', 'url', 'zone', 'advertiser', 'weight',
         'publication_date', 'publication_date_end']
     list_filter = [
         'publication_date', 'publication_date_end',
@@ -77,11 +77,10 @@ class AdAdmin(admin.ModelAdmin):
         }
 
 
-
 class ClickAdmin(admin.ModelAdmin):
-    search_fields = ['ad', 'source_ip', 'session_id']
+    search_fields = ['ad__title', 'source_ip', 'session_id']
     list_display = ['ad', 'click_date', 'source_ip', 'session_id']
-    list_filter = ['click_date']
+    list_filter = ['ad', 'click_date', 'ad__zone']
     date_hierarchy = 'click_date'
     actions = ['download_clicks']
 
@@ -113,9 +112,9 @@ class ClickAdmin(admin.ModelAdmin):
 
 
 class ImpressionAdmin(admin.ModelAdmin):
-    search_fields = ['ad', 'source_ip', 'session_id']
+    search_fields = ['ad__title', 'source_ip', 'session_id']
     list_display = ['ad', 'impression_date', 'source_ip', 'session_id']
-    list_filter = ['impression_date']
+    list_filter = ['ad', 'impression_date', 'ad__zone']
     date_hierarchy = 'impression_date'
     actions = ['download_impressions']
 

@@ -1,9 +1,11 @@
 {% load sekizai_tags %}{% spaceless %}
 {% if ad %}
 {% for image in ad.images.all %}
-<a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}" class="django-ads-ad visible-{{ image.device }}">
-    <img src="{{ image.image.url }}" class="img-responsive" />
-</a>
+<div class="ads-wrapper ad-{{ zone.name|lower }}">
+    <a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}" class="ads-ad visible-{{ image.device }}">
+        <img src="{{ image.image.url }}" class="img-responsive" />
+    </a>
+</div>
 {% endfor %}
 {% elif google_adsense_client and zone.google_adsense_slot %}
     {% addtoblock "js" %}<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{% endaddtoblock %}

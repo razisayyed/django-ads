@@ -6,4 +6,4 @@ from django.utils.translation import ugettext_lazy as _
 
 class AdsConfig(AppConfig):
     name = 'ads'
-    verbose_name = _('Ads Management System')
+    verbose_name = _('Ads Management')

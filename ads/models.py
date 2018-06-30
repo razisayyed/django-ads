@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _
 
+from filer.fields.image import FilerImageField
+
 from ads.conf import settings
 from ads.managers import AdManager
 
@@ -18,7 +20,7 @@ class Advertiser(models.Model):
         verbose_name=_(u'Company Name'), max_length=255)
     website = models.URLField(verbose_name=_(u'Company Site'))
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True,
         verbose_name=_('Created By'))
 
     class Meta:
@@ -41,7 +43,7 @@ class Category(models.Model):
     description = models.TextField(
         verbose_name=_('Description'), blank=True)
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True,
         verbose_name=_('Created By'))
 
     class Meta:
@@ -94,7 +96,7 @@ class Ad(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True,
         verbose_name=_('Created By'))
 
     objects = AdManager()
@@ -108,7 +110,7 @@ class Ad(models.Model):
 
     def get_absolute_url(self):
         return reverse('ads:ad-click', kwargs={
-            'id': self.id})
+            'pk': self.id})
 
 
 @python_2_unicode_compatible
@@ -118,7 +120,7 @@ class AdImage(models.Model):
         related_name='images')
     device = models.CharField(
         verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
-    image = models.ImageField(verbose_name=_('Image'), max_length=255)
+    image = FilerImageField(verbose_name=_('Image'), max_length=255, related_name="images")
 
     @property
     def size(self):
