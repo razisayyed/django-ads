@@ -78,7 +78,7 @@ class AdAdmin(admin.ModelAdmin):
 
 
 class ClickAdmin(admin.ModelAdmin):
-    search_fields = ['ad', 'source_ip', 'session_id']
+    search_fields = ['ad__title', 'source_ip', 'session_id']
     list_display = ['ad', 'click_date', 'source_ip', 'session_id']
     list_filter = ['ad', 'click_date', 'ad__zone']
     date_hierarchy = 'click_date'
@@ -112,7 +112,7 @@ class ClickAdmin(admin.ModelAdmin):
 
 
 class ImpressionAdmin(admin.ModelAdmin):
-    search_fields = ['ad', 'source_ip', 'session_id']
+    search_fields = ['ad__title', 'source_ip', 'session_id']
     list_display = ['ad', 'impression_date', 'source_ip', 'session_id']
     list_filter = ['ad', 'impression_date', 'ad__zone']
     date_hierarchy = 'impression_date'
