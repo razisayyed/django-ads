@@ -108,7 +108,7 @@ class Ad(models.Model):
 
     def get_absolute_url(self):
         return reverse('ads:ad-click', kwargs={
-            'id': self.id})
+            'pk': self.id})
 
 
 @python_2_unicode_compatible
