@@ -154,7 +154,7 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
-0.2.1 (2018-02-05): (Special Thanks to `@GabrielDumbrava <https://github.com/GabrielDumbrava>`_
+0.2.1 (2018-07-26): (Special Thanks to `@GabrielDumbrava <https://github.com/GabrielDumbrava>`_
 )
 
 - get_zones_choices now return choices sorted based on key
