@@ -30,7 +30,7 @@ Add ``'ads'`` to your ``INSTALLED_APPS``
 Make sure ``django.template.context_processors.request`` is included in ``context_processors``
 
 .. code-block:: python
-   
+
   TEMPLATES = [
       {
           'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -150,15 +150,25 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 
   {% render_ads_zone 'zone_name' %}
 
-    
+
 Changelog:
 ----------
+
+0.2.1 (2018-02-05): (Special Thanks to `@GabrielDumbrava <https://github.com/GabrielDumbrava>`_
+)
+
+- get_zones_choices now return choices sorted based on key
+- Ad, Category, and Advertizer now stay on DB after deleting `created_by` user.
+- fix get_absolute_url in Ad model.
+- Add `ad` and `ad__zone` filters to impressions and clicks admin pages.
+- Fix clicks and impressions admin search.
 
 0.2.1 (2018-02-05):
 
 - add long_description to setup.py
 
-0.2.0 (2018-02-05) (Special Thanks to @ataylor32):
+0.2.0 (2018-02-05) (Special Thanks to `@ataylor32 <https://github.com/ataylor32>`_
+):
 
 - add Django 2.0 support
 - add missing dependency (Pillow)
@@ -196,4 +206,3 @@ Changelog:
 0.1.1 (2016-12-20):
 
 - add missing templates directory.
-
