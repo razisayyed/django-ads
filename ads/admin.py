@@ -58,7 +58,7 @@ class AdImageInline(admin.TabularInline):
 class AdAdmin(admin.ModelAdmin):
     form = AdAdminForm
     list_display = [
-        'title', 'url', 'advertiser', 'weight',
+        'title', 'url', 'zone', 'advertiser', 'weight',
         'publication_date', 'publication_date_end']
     list_filter = [
         'publication_date', 'publication_date_end',
