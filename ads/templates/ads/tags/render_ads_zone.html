@@ -1,17 +1,3 @@
-{% load sekizai_tags %}{% spaceless %}
-{% if ad %}
-{% for image in ad.images.all %}
-<a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}" class="django-ads-ad visible-{{ image.device }}">
-    <img src="{{ image.image.url }}" class="img-responsive" />
-</a>
-{% endfor %}
-{% elif google_adsense_client and zone.google_adsense_slot %}
-    {% addtoblock "js" %}<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{% endaddtoblock %}
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="{{ google_adsense_client }}"
-         data-ad-slot="{{ zone.google_adsense_slot }}"
-         data-ad-format="{{ zone.google_adsense_format|default:'auto' }}"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-{% endif %}
-{% endspaceless %}
+{% load static sekizai_tags %}
+<div data-django-ads-zone="{{ zone|safe }}" data-django-ads-extra-classes="{{ extra_classes|safe }}"></div>
+{% addtoblock "js" %}<script defer src='{% static 'ads/ads.js' %}'></script>{% endaddtoblock %}

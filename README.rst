@@ -73,43 +73,63 @@ Add the following to your settings file:
 
 .. code-block:: python
 
-  ADS_GOOGLE_ADSENSE_CLIENT = 'ca-pub-xxxxxxxxxxxxxxxx'  # OPTIONAL - DEFAULT TO None
+    ADS_GOOGLE_ADSENSE_CLIENT = None  # 'ca-pub-xxxxxxxxxxxxxxxx'
 
-  ADS_ZONES = {
-      'header': {
-          'name': _('Header'),
-          'ad_size': {
-              'xs': '720x150',
-              'sm': '800x90',
-              'md': '800x90',
-              'lg': '800x90'
-          },
-          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
-          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-      },
-      'content': {
-          'name': _('Content'),
-          'ad_size': {
-              'xs': '720x150',
-              'sm': '800x90',
-              'md': '800x90',
-              'lg': '800x90'
-          },
-          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
-          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-      },
-      'sidebar': {
-          'name': _('Sidebar'),
-          'ad_size': {
-              'xs': '720x150',
-              'sm': '800x90',
-              'md': '800x90',
-              'lg': '800x90'
-          },
-          'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
-          'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-      },
-  }
+    ADS_ZONES = {
+        'header': {
+            'name': gettext('Header'),
+            'ad_size': {
+                'xs': '720x150',
+                'sm': '800x90',
+                'md': '800x90',
+                'lg': '800x90',
+                'xl': '800x90'                
+            },
+            'google_adsense_slot': None,  # 'xxxxxxxxx',
+            'google_adsense_format': None,  # 'auto'
+        },
+        'content': {
+            'name': gettext('Content'),
+            'ad_size': {
+                'xs': '720x150',
+                'sm': '800x90',
+                'md': '800x90',
+                'lg': '800x90',
+                'xl': '800x90'                
+            },
+            'google_adsense_slot': None,  # 'xxxxxxxxx',
+            'google_adsense_format': None,  # 'auto'
+        },
+        'sidebar': {
+            'name': gettext('Sidebar'),
+            'ad_size': {
+                'xs': '720x150',
+                'sm': '800x90',
+                'md': '800x90',
+                'lg': '800x90',
+                'xl': '800x90'
+            }
+        }
+    }
+
+    ADS_DEFAULT_AD_SIZE = '720x150'
+
+    ADS_DEVICES = (
+        ('xs', _('Extra small devices')),
+        ('sm', _('Small devices')),
+        ('md', _('Medium devices (Tablets)')),
+        ('lg', _('Large devices (Desktops)')),
+        ('xl', _('Extra large devices (Large Desktops)')),
+    )
+    
+    ADS_VIEWPORTS = {
+        'xs': 'd-block img-fluid d-sm-none',
+        'sm': 'd-none img-fluid d-sm-block d-md-none',
+        'md': 'd-none img-fluid d-md-block d-lg-none',
+        'lg': 'd-none img-fluid d-lg-block d-xl-none',
+        'xl': 'd-none img-fluid d-xl-block',
+    }
+
 
 Where each element in ``ADS_ZONES`` defines a ``zone`` that can be used in your templates to display ads. Each zone must have a name to be used in the admin interface when adding ads, and sizes to be used to display the ad images in templates.
 
@@ -154,6 +174,11 @@ use ``render_ads_zone`` in your template where you want your ads to appear:
 Changelog:
 ----------
 
+1.0.0 (2019-03-26):
+
+- major change in functionality (switch to JS approach in rendering templates). You need jquery to be installed in frontend to use django-ads.
+- Note: templates/ads/tags/render_ads_zone.html has been changed. If you use a custom template, then please take a look at the new version.
+
 0.2.1 (2018-07-26): (Special Thanks to `@GabrielDumbrava <https://github.com/GabrielDumbrava>`_
 )
 
@@ -167,8 +192,8 @@ Changelog:
 
 - add long_description to setup.py
 
-0.2.0 (2018-02-05) (Special Thanks to `@ataylor32 <https://github.com/ataylor32>`_
-):
+0.2.0 (2018-02-05): (Special Thanks to `@ataylor32 <https://github.com/ataylor32>`_
+)
 
 - add Django 2.0 support
 - add missing dependency (Pillow)

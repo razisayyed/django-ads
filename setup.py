@@ -19,6 +19,7 @@ REQUIREMENTS = [
     'Django>=1.8',
     'django-appconf>=1.0.2',
     'django-sekizai>=0.9.0',
+    'django-braces>=1.10.0',
     'Pillow',
 ]
 
