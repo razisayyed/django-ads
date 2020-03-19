@@ -4,14 +4,13 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible, force_text
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
 from ads.conf import settings
 from ads.managers import AdManager
 
 
-@python_2_unicode_compatible
 class Advertiser(models.Model):
     """ A Model for our Advertiser.  """
     company_name = models.CharField(
@@ -33,7 +32,6 @@ class Advertiser(models.Model):
         return self.website
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     """ a Model to hold the different Categories for adverts """
     title = models.CharField(
@@ -57,7 +55,6 @@ def now_plus_1_day():
     return timezone.now() + timezone.timedelta(days=1)
 
 
-@python_2_unicode_compatible
 class Ad(models.Model):
     """
     This is our base model, from which all ads will inherit.
@@ -111,7 +108,6 @@ class Ad(models.Model):
             'pk': self.id})
 
 
-@python_2_unicode_compatible
 class AdImage(models.Model):
     ad = models.ForeignKey(
         Ad, on_delete=models.CASCADE, verbose_name=_('Ad'),
@@ -131,7 +127,6 @@ class AdImage(models.Model):
         return self.get_device_display()
 
 
-@python_2_unicode_compatible
 class Impression(models.Model):
     """
     The AdImpression Model will record every time the ad is loaded on a page
@@ -158,7 +153,6 @@ class Impression(models.Model):
         return force_text(self.ad)
 
 
-@python_2_unicode_compatible
 class Click(models.Model):
     """
     The AdClick model will record every click that a add gets
