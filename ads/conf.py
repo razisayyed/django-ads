@@ -1,6 +1,7 @@
 from django.conf import settings
 from appconf import AppConf
-from django.utils.translation import ugettext_lazy as _
+
+from ads.compat import gettext_lazy as _
 
 
 gettext = lambda s: s

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
+
+from ads.compat import gettext_lazy as _
 
 from ads.models import Click, Impression
 

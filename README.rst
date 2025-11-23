@@ -180,6 +180,10 @@ use ``get_ads_count`` in your template to check if any zone has active ads.
 Changelog:
 ----------
 
+1.2.0 (2025-11-23):
+
+- add Django 4 and 5 support.
+
 1.1.1 (2020-03-20):
 
 - remove @python_2_unicode_compatible (removed in Django 3.0)

@@ -4,8 +4,8 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+
+from ads.compat import force_str, gettext_lazy as _
 
 from ads.conf import settings
 from ads.managers import AdManager
@@ -150,7 +150,7 @@ class Impression(models.Model):
         )
 
     def __str__(self):
-        return force_text(self.ad)
+        return force_str(self.ad)
 
 
 class Click(models.Model):
@@ -176,4 +176,4 @@ class Click(models.Model):
         )
 
     def __str__(self):
-        return force_text(self.ad)
+        return force_str(self.ad)

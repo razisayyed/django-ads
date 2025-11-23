@@ -1,3 +1,6 @@
-default_app_config = 'ads.apps.AdsConfig'
+import django
 
-__version__ = '1.1.1'
+if django.VERSION < (3, 2):  # pragma: no cover - compatibility shim
+    default_app_config = 'ads.apps.AdsConfig'
+
+__version__ = '1.2.0'
